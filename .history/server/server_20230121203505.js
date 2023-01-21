@@ -17,14 +17,14 @@ app.use(express.json())
 
 // Create dataset
 const dataset = createDataset({
-  file: 'basic_data.jsonl',
+  file: 'arvr_ama_bot_data.jsonl',
   model: 'text-davinci-002',
 });
 
 // Fine-tune model
 const model = await openai.createModel({
   dataset,
-  name: 'basic_arvrtise',
+  name: 'arvr_ama_bot_model',
 });
 
 app.get('/', async (req, res) => {
@@ -38,7 +38,7 @@ app.post('/', async (req, res) => {
     const prompt = req.body.prompt;
 
     const response = await openai.createCompletion({
-      model: model.id,
+      model: "text-davinci-003",
       prompt: `${prompt}`,
       temperature: 0, 
       max_tokens: 3000, 
